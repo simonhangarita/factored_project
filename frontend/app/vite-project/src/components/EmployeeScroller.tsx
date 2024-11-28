@@ -59,6 +59,7 @@ const EmployeeScroller = () => {
   const scroll = (direction: string) => {
     const scrollAmount = 700;
     if (scrollRef.current) {
+        // @ts-ignore
       scrollRef.current.scrollBy({
         left: direction === "left" ? -scrollAmount : scrollAmount,
         behavior: "smooth",
@@ -111,7 +112,8 @@ const EmployeeScroller = () => {
   }
 
 
-    return (
+
+  return (
     <Box display="flex" alignItems="center" gap={2}>
       <IconButton onClick={() => scroll("left")}>
         <ArrowBackIosIcon />
@@ -135,16 +137,22 @@ const EmployeeScroller = () => {
             <CardMedia
               component="img"
               height="350"
+              // @ts-ignore
               image={employee.avatar}
               alt="Avatar"
             />
             <CardContent>
-              <Typography variant="h6">{employee.name}</Typography>
+
+              <Typography variant="h6">{
+                  // @ts-ignore
+                employee.name}</Typography>
               <Typography variant="body2" color="text.secondary">
-                Position: {employee.role}
+                Position: {// @ts-ignore
+                employee.role}
               </Typography>
               <Box sx={{ height: 300, width: 300 }}>
                 <Radar
+                    // @ts-ignore
                   data={getChartData(employee.skills)}
                   options={chartOptions}
                 />
